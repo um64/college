@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Animated Text</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Slackey&display=swap">
+  <style>
+    body {
+    align-items: center;
+    background: #000;
+    box-sizing: border-box;
+    color: #0f0;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    font-family: 'Slackey', sans-serif; /* Use Slackey font */
+    justify-content: center;
+    margin: 0;
+    min-height: 100vh;
+    padding: 100px;
+}
+
+div {
+    font-size: 10vw;
+    line-height: 1;
+}
+
+div > span {
+    display: inline-block;
+    overflow: hidden;
+    transition-duration: 0.2s;
+    transition-property: transform;
+}
+
+div > span span {
+    display: inline-block;
+    transition-duration: 0.5s;
+    transition-property: transform;
+    transition-timing-function: cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+div > span:nth-child(odd) {
+    transform: translateY(50%);
+}
+
+div > span:nth-child(odd) span {
+    transform: translateY(-100%);
+}
+
+div > span:nth-child(even) {
+    transform: translateY(-50%);
+}
+
+div > span:nth-child(even) span {
+    transform: translateY(100%);
+}
+
+div.loaded > span {
+    transform: translateY(0);
+}
+
+div.loaded > span span {
+    transform: translateY(0);
+}
+
+small {
+    font-family: 'Arial', sans-serif; /* Change the font of small text */
+}
+
+/* Styles for authentication buttons */
+.auth-buttons {
+  position: fixed;
+  top: 10px;
+  right: 20px;
+}
+
+.auth-buttons {
+  position: fixed;
+  top: -100px;
+  right: 10px;
+}
+
+.auth-buttons a.login-button,
+.auth-buttons a.register-button,
+.auth-buttons a.logout-button {
+  display: inline-block;
+  padding: 6px 12px; /* Adjust padding to set button size */
+  font-size: 20px; /* Adjust font size for the buttons */
+  background-color: #000;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 5px;
+  margin-left: 0px; /* Reduce the left margin for the buttons */
+  transition: background-color 0.3s;
+}
+
+.auth-buttons a.logout-button {
+  margin-left: 10px; /* Adjust margin for logout button if necessary */
+}
+
+.auth-buttons a:hover {
+  background-color: #090; /* Adjust hover color */
+}
+
+.name {
+      font-size: 20px; /* Adjust font size */
+      color: #0f0; /* Green color */
+      margin-top: 300px; /* Adjust top margin */
+      
+  margin-right: 10px; /* Right margin */
+  margin-bottom: 15px; /* Bottom margin */
+  margin-left: 20px; /* Left margin */
+    }
+
+    /* Add new styles for layout adjustment */
+    .names-container {
+      display: flex;
+      justify-content: space-around;
+      margin-top: 15px; /* Adjust top margin */
+      margin: 0px 1000px;
+      padding: 20px;
+    }
+
+  </style>
+
+</head>
+<body>
+  <div>
+    <span><span>Se</span></span><span><span>nt</span></span><span><span>in</span></span><span><span>al</span></span><span><span>Wa</span></span><span><span>tc</span></span><span><span>h</span></span>
+  </div>
+
+  <a href="{% url 'about' %}" class="about-button">Track and Visualize RDP Attacks Worldwide</a>
+  <div class="auth-buttons">
+    {% if not user.is_authenticated %}
+    <a href="{% url 'login' %}" class="login-button">Login</a>
+    <a href="{% url 'register' %}" class="register-button">Register</a>
+    {% else %}
+    <a href="{% url 'logout' %}" class="logout-button">Logout</a>
+    {% endif %}
+  </div>
+
+
+  <div class="names-container">
+    <div class="name">Ronit </div>
+    <div class="name">Uzair </div>
+    <div class="name">Shreya </div>
+    <div class="name">Samarth </div>
+  </div>
+
+
+  <script>
+    const d = document.querySelector('div');
+    const trackAndVisualize = document.querySelector('small a'); // Get the link element
+  
+    setTimeout(() => {
+      d.classList.add('loaded');
+    }, 500);
+  
+    document.body.addEventListener('click', (event) => {
+      if (!trackAndVisualize.contains(event.target)) {
+        d.classList.toggle('loaded');
+        
+      }
+    });
+  </script>
+  
+</body>
+</html>
+</html>
