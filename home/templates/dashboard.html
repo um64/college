@@ -1,7 +1,8 @@
 <!-- templates/dashboard.html -->
-
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <title>Dashboard</title>
@@ -11,8 +12,10 @@
             margin: 0;
             padding: 0;
             overflow: hidden;
-            background-color: #000; /* Black background */
-            color: #0f0; /* Green text color */
+            background-color: #000;
+            /* Black background */
+            color: #0f0;
+            /* Green text color */
         }
 
         .background {
@@ -53,22 +56,25 @@
             0% {
                 transform: translateX(0);
             }
+
             100% {
                 transform: translateX(200%);
             }
         }
-        
+
 
 
         .title {
             font-size: 2.5em;
-            margin-top: 20px; /* Adjust this value to set the space from the top */
+            margin-top: 20px;
+            /* Adjust this value to set the space from the top */
             text-align: center;
         }
 
         .subtitle {
             font-size: 1.5em;
-            margin-bottom: 5px; /* Adjust this value to set the space between the subtitle and content */
+            margin-bottom: 5px;
+            /* Adjust this value to set the space between the subtitle and content */
             text-align: center;
         }
 
@@ -76,17 +82,21 @@
             text-align: justify;
             margin: 0 auto;
             max-width: 600px;
-            padding: 20px; /* Adjust this value to set the space between the content */
+            padding: 20px;
+            /* Adjust this value to set the space between the content */
             position: absolute;
-            top: 45%; /* Adjust this value to position the content vertically */
+            top: 45%;
+            /* Adjust this value to position the content vertically */
             left: 50%;
             transform: translate(-50%, -50%);
         }
+
         p {
             font-size: 1.1em;
             margin-bottom: 20px;
             line-height: 1.6;
         }
+
         .action-button {
             display: inline-block;
             padding: 12px 24px;
@@ -97,9 +107,11 @@
             margin-top: 20px;
             transition: background-color 0.3s;
         }
+
         .action-button:hover {
             background-color: #0056b3;
         }
+
         .auth-buttons {
             position: fixed;
             top: 20px;
@@ -122,59 +134,59 @@
         }
     </style>
 </head>
+
 <body>
     <div class="background"></div>
     <div class="content-box">
         <div class="auth-buttons" style="top: 20px; right: 20px;">
             <a href="{% url 'logout' %}">Logout</a>
         </div>
-        <h1 class="title" id="hackerEffect">Sentinel Watch</h1>
-        
+        <h1 class="title">Sentinel Watch</h1>
+        <h2 class="subtitle" style="position: absolute; top: 90px; left: 20px;">Welcome, {{ user.username }}! This is
+            your dashboard.</h2>
+        <img src="{% static 'map_animation2.gif' %}" alt="Your GIF"
+            style="position: absolute; top: 220px; left: 20px; width: 600px; height: auto;">
 
-        <!-- Product Description for Dashboard -->
-        <div class="product-description">
-            <p>Welcome, {{ user.username }}! This is your dashboard.</p>
-            <!-- Dashboard content goes here -->
-        </div>
     </div>
 
     <script>
-         const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-    
-    let interval = null;
+        const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 
-    document.addEventListener('DOMContentLoaded', () => {
-        // store the text into data-value
-        const selElements = document.querySelectorAll("#hackerEffect");
-        selElements.forEach((selEl) => {
-            selEl.setAttribute('data-value', selEl.textContent);
+        let interval = null;
+
+        document.addEventListener('DOMContentLoaded', () => {
+
+            const selElements = document.querySelectorAll("#hackerEffect");
+            selElements.forEach((selEl) => {
+                selEl.setAttribute('data-value', selEl.textContent);
+            });
         });
-    });
 
-    document.querySelector("#hackerEffect").onmouseover = event => {
-        let iteration = 0;
-        clearInterval(interval);
-        
-        interval = setInterval(() => {
-            event.target.innerText = 
-                event.target.innerText.split("")
-                .map((letter,index) => {
-                    if(index < iteration ){
-                        return event.target.dataset.value[index];
-                    }
-                    return letters[Math.floor(Math.random() * 26)]
-                })
-                .join("");
-            
-            if(iteration >= event.target.dataset.value.length) {
-                clearInterval(interval);
-                setTimeout(() => {
-                    iteration = 0;
-                }, 1000); // Adjust the delay duration in milliseconds (e.g., 1000ms = 1 second)
-            }
-            iteration += 1/9;
-        }, 30);
-    }
+        document.querySelector("#hackerEffect").onmouseover = event => {
+            let iteration = 0;
+            clearInterval(interval);
+
+            interval = setInterval(() => {
+                event.target.innerText =
+                    event.target.innerText.split("")
+                        .map((letter, index) => {
+                            if (index < iteration) {
+                                return event.target.dataset.value[index];
+                            }
+                            return letters[Math.floor(Math.random() * 26)]
+                        })
+                        .join("");
+
+                if (iteration >= event.target.dataset.value.length) {
+                    clearInterval(interval);
+                    setTimeout(() => {
+                        iteration = 0;
+                    }, 1000);
+                }
+                iteration += 1 / 9;
+            }, 30);
+        }
     </script>
 </body>
+
 </html>

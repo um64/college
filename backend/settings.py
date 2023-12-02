@@ -121,12 +121,20 @@ USE_I18N = True
 USE_TZ = True
 
 
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/4.2/howto/static-files/
-
-STATIC_URL = 'static/'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+STATIC_URL = '/static/'
+
+# This should be a string, not a list
+STATICFILES_DIRS = [
+    BASE_DIR / 'static',
+]
+
+# Change this to the directory where you want the collected static files to be stored
+# Ensure it's an absolute path
+STATIC_ROOT = BASE_DIR / 'staticfiles'
