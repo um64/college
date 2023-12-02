@@ -27,7 +27,7 @@ for country, coords in coordinates.items():
     dot, = ax.plot(coords[1], coords[0], 'wo', markersize=0, transform=ccrs.PlateCarree())  # Change marker color to white
     dots.append(dot)
     dot_alphas.append(0.0)  
-    ax.text(coords[1], coords[0], country, color='white', fontsize=12, transform=ccrs.PlateCarree())  # Change text color to white
+    ax.text(coords[1], coords[0], country, color='lime', fontsize=12, transform=ccrs.PlateCarree())  # Change text color to white
 
 # Define animation parameters and logic
 fade_duration = 3 
@@ -44,6 +44,7 @@ def animate(frame):
         
         dot.set_markersize(8)  
         dot.set_alpha(dot_alphas[i])  
+        dot.set_color('lime')
     return dots
 
 # Create the animation
