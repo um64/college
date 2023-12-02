@@ -137,17 +137,30 @@
 
 <body>
     <div class="background"></div>
-    <div class="content-box">
-        <div class="auth-buttons" style="top: 20px; right: 20px;">
-            <a href="{% url 'logout' %}">Logout</a>
-        </div>
-        <h1 class="title">Sentinel Watch</h1>
-        <h2 class="subtitle" style="position: absolute; top: 90px; left: 20px;">Welcome, {{ user.username }}! This is
-            your dashboard.</h2>
-        <img src="{% static 'map_animation2.gif' %}" alt="Your GIF"
-            style="position: absolute; top: 220px; left: 20px; width: 600px; height: auto;">
-
+<div class="content-box">
+    <div class="auth-buttons" style="top: 20px; right: 20px;">
+        <a href="{% url 'logout' %}">Logout</a>
     </div>
+    <h1 class="title">Sentinel Watch</h1>
+    <h2 class="subtitle" style="position: absolute; top: 90px; left: 20px;">Welcome, {{ user.username }}! This is your dashboard.</h2>
+    <div style="position: relative;">
+        <div style="position: relative; display: inline-block;">
+            <img src="{% static 'map_animation2.gif' %}" alt="Your GIF" style="width: 600px; height: auto;">
+        </div>
+        <!-- Text for duration of last attack -->
+        <div class="duration-text" style="position: absolute; top: 220px; left: 640px;">
+            <p style="font-size: 1.2em; color: #0f0; margin-bottom: 5px;">Duration of Last Attack:</p>
+            <!-- Here you can dynamically insert the duration using JavaScript -->
+            <p id="lastAttackDuration" style="font-size: 1em;">
+                {% if user_profile.last_attack_duration %}
+                    {{ user_profile.last_attack_duration }}
+                {% else %}
+                    Not Available
+                {% endif %}
+            </p>
+        </div>
+    </div>
+</div>
 
     <script>
         const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";

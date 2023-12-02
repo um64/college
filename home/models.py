@@ -6,6 +6,7 @@ class UserProfile(models.Model):
     ips = models.TextField(blank=True)
     location = models.CharField(max_length=100, blank=True)
     num_attacks = models.IntegerField(default=0)
+    last_attack_duration = models.DurationField(blank=True, null=True)
 
     # Add any other fields you need for user-specific data
 
