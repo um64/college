@@ -137,6 +137,7 @@ small {
     <a href="{% url 'login' %}" class="login-button">Login</a>
     <a href="{% url 'register' %}" class="register-button">Register</a>
     {% else %}
+    <a href="{% url 'dashboard' %}" class="logout-button">Dashboard</a>
     <a href="{% url 'logout' %}" class="logout-button">Logout</a>
     {% endif %}
   </div>

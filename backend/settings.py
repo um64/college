@@ -135,6 +135,9 @@ STATICFILES_DIRS = [
     BASE_DIR / 'static',
 ]
 
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'static'),
+]
 # Change this to the directory where you want the collected static files to be stored
 # Ensure it's an absolute path
 STATIC_ROOT = BASE_DIR / 'staticfiles'
